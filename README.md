@@ -19,6 +19,9 @@ podman run --name ffmpeg --rm -it ubi8-py39-ffmpeg /bin/bash
 # exit and stop the image
 exit
 podman stop ubi8-py39-ffmpeg
+
+# cleanup disk space - unused images, containers, and volumes.
+podman system prune -a
 ```
 
 ## ubi8-ffmpeg
