@@ -16,7 +16,7 @@ podman build --format=docker -t ubi8-py39-ffmpeg .
 # run the image
 podman run --name ffmpeg --rm -it ubi8-py39-ffmpeg /bin/bash
 
-# stop the image
+# exit and stop the image
 exit
 podman stop ubi8-py39-ffmpeg
 ```
@@ -25,7 +25,7 @@ podman stop ubi8-py39-ffmpeg
 
 The Containerfile (i.e. [ubi8-py39-ffmpeg](https://github.com/dmarcus-wire/ubi-python-ffmpeg/blob/main/ubi8-py39-ffmpeg))  creates a container with Python 3.9, installs development tools, builds and installs FFmpeg from source, and configures the container to run with a non-root user. The result is a Python-based container with FFmpeg installed, ready to be used for media processing or other tasks involving FFmpeg.
 
-**FROM** registry.redhat.io/ubi8/python-39:
+**FROM registry.redhat.io/ubi8/python-39:**
 
 - This sets the base image for the container. It uses Red Hat's Universal Base Image 8 (UBI 8) with Python 3.9.
 
@@ -39,6 +39,8 @@ Installs several development tools and libraries required for building FFmpeg an
 - gcc, gcc-c++, make, automake, autoconf, libtool, git: A set of development tools and version control software.
 - It also installs the EPEL (Extra Packages for Enterprise Linux) repository by downloading and installing the epel-release package, which is needed for additional packages that aren't included by default in Red Hat-based distributions.
 - Finally, yum clean all clears the cache, reducing the size of the image by removing unnecessary temporary files.
+
+Note: `yum groupinstall "Development Tools"` works on RHEL but does not on the ubi containers, which is why we have to run this step.
 
 **RUN git clone --depth 1 https://git.ffmpeg.org/ffmpeg.git ffmpeg && \ ...:**
 
