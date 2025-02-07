@@ -23,7 +23,7 @@ podman stop ubi8-py39-ffmpeg
 
 ## ubi8-ffmpeg
 
-This Containerfile creates a container with Python 3.9, installs development tools, builds and installs FFmpeg from source, and configures the container to run with a non-root user. The result is a Python-based container with FFmpeg installed, ready to be used for media processing or other tasks involving FFmpeg.
+The Containerfile (i.e. [ubi8-py39-ffmpeg](https://github.com/dmarcus-wire/ubi-python-ffmpeg/blob/main/ubi8-py39-ffmpeg))  creates a container with Python 3.9, installs development tools, builds and installs FFmpeg from source, and configures the container to run with a non-root user. The result is a Python-based container with FFmpeg installed, ready to be used for media processing or other tasks involving FFmpeg.
 
 **FROM** registry.redhat.io/ubi8/python-39:
 
@@ -49,7 +49,7 @@ Installs several development tools and libraries required for building FFmpeg an
 
 **USER default:**
 
-Switches back to the default user (likely a non-root user defined in the base image), which is a security best practice to avoid running applications as root.
+- Switches back to the default user (likely a non-root user defined in the base image), which is a security best practice to avoid running applications as root.
 
 **CMD ["/bin/bash"]:**
 
