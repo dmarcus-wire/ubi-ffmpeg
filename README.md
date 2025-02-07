@@ -2,15 +2,23 @@
 
 Provides Containerfiles for FFMPEG a common package for many AI/ML applications. RHEL/UBI does not provide this package and it's complicated to troubleshoot.
 
-To build the images
+## usage
 ```bash
 # login to registry.redhat.io
 podman login registry.redhat.io
 
 # download the Containerfile locally
+wget -O Containerfile https://github.com/dmarcus-wire/ubi-ffmpeg/blob/main/ubi8-py39-ffmpeg
 
 # build the image from the same directory you saved the Containerfile
 podman build --format=docker -t ubi8-py39-ffmpeg .
+
+# run the image
+podman run --name ffmpeg --rm -it ubi8-py39-ffmpeg /bin/bash
+
+# stop the image
+exit
+podman stop ubi8-py39-ffmpeg
 ```
 
 ## ubi8-ffmpeg
